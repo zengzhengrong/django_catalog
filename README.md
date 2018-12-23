@@ -1,6 +1,10 @@
 # django_catalog
 
 [![ENV](https://img.shields.io/badge/django-1.7+-green.svg)](https://github.com/pylixm/django-mdeditor)
+# Features
+- Automatically generate catalog 
+- Support for subtitle inline titles
+- Compatible with [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor) and [django-mdeditor](https://github.com/pylixm/django-mdeditor) ...
 
 # Usage
 Clone ```catalog```folder and paste into your project directory
@@ -9,7 +13,7 @@ Add it to your INSTALLED_APPS:
 ```
 INSTALLED_APPS = [
     ...
-    'django_private_chat',
+    'catalog',
     ...
 ]
 ```
