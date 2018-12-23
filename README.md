@@ -34,7 +34,7 @@ The default html tags are h4 and h5，If you need to replace it ，use：
 ```
 SET_CATALOG_ID = ('h2','h3')
 ```
-also you can add attribute like this:
+also you can add attribute like this(default no attribute):
 ```
 SET_CATALOG_ATTR = {
      'ul':'class="list-group"',
