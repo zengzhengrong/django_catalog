@@ -1,0 +1,21 @@
+{% extends "demo_app/base.html" %}
+{% block content %}
+<div class="col-12 col-md-12">
+    <h1 class="text-center">Post</h1>
+        <div class="list-group">
+        {% if object_list %}
+        {% for article in object_list %}
+        <a href={% url 'post-detail' article.slug %} class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ article.title }}</h5>
+            <small>{{ article.pulish_data|timesince }}</small>
+            </div>
+        </a>
+        {% empty %}
+        No posts yet.
+        {% endfor %}
+        </div>
+        {% endif %}      
+</div>
+{% endblock content %}
+

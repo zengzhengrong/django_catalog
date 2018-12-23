@@ -1,0 +1,5 @@
+{% load catalog_tags %}
+{% render_catalog_html content as html %}
+{% if html %}
+        {{ html|safe}}
+{% endif %}

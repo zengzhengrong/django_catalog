@@ -1,0 +1,7 @@
+*~
+__pycache__
+*.pyc
+.vscode/
+Pipfile
+Pipfile.lock
+django_catalog.code-workspace

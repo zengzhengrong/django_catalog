@@ -1,0 +1,74 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Mdeditor CSS -->
+    <link href="{% static 'css/editormd.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/editormd.preview.css' %}" rel="stylesheet">
+    <title>Demo</title>
+  </head>
+  <body style="background-color: #dee2e6;">
+    <header>
+
+    </header>
+    <div class="container">
+        <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>Django_catalog Demo</h2>
+        <p class="lead">By zzr</p>
+        </div>
+        <div class="row">
+
+            
+            {% block content %}
+
+            {% endblock content %}
+            
+            
+
+        </div>
+    </div>  
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/editormd.min.js'%}"></script>
+    <script src="{% static 'js/lib/marked.min.js'%}"></script>
+    <script src="{% static 'js/lib/prettify.min.js'%}"></script>
+    <script src="{% static 'js/lib/raphael.min.js'%}"></script>
+    <script src="{% static 'js/lib/underscore.min.js'%}"></script>
+    <script src="{% static 'js/lib/sequence-diagram.min.js'%}"></script>
+    <script src="{% static 'js/lib/flowchart.min.js'%}"></script>
+    <script src="{% static 'js/lib/jquery.flowchart.min.js'%}"></script>
+
+    <script>
+      $(function () {
+          // js 解析markdown
+          editormd.markdownToHTML("content", {
+              //htmlDecode      : "style,script,iframe",  // you can filter tags decode
+              emoji           : true,
+              taskList        : true,
+              tex             : true,  // 默认不解析
+              flowChart       : true,  // 默认不解析
+              sequenceDiagram : true,  // 默认不解析
+          });
+    
+          $(".reference-link").each(function (i,obj) {
+            // console.log(obj)
+          })
+      })
+    
+    </script>
+</body>
+</html>
