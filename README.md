@@ -7,6 +7,7 @@
 ```
 git clone https://github.com/zengzhengrong/django_catalog.git
 pipenv shell or source /path/to/ENV/bin/activate
+pip install -r ./requirements.txt
 cd ./demo
 python manage.py runserver
 ```
