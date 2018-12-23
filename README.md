@@ -1,7 +1,6 @@
 # django_catalog
 
-[![ENV](https://img.shields.io/badge/python3.x-green.svg)]
-[![ENV](https://img.shields.io/badge/django-1.7+-green.svg)]
+[![ENV](https://img.shields.io/badge/django 1.7+-green.svg)]
 
 # Usage
 Clone ```catalog```folder and paste into your project directory
