@@ -3,11 +3,31 @@ from django.template.defaultfilters import striptags
 from django.utils.html import strip_tags
 from django.conf import settings
 # 生成文章目录
-
+    
 def get_catalog_math(content):
+    '''
+    Get html tags 
+    '''
     pattern = re.compile('<h\d.*</h\d>')
     math = pattern.findall(content)# list[math1,math2]
     return math
+
+def get_markdown_lines(content):
+    line_list = content.splitlines()
+    strip_lines = [title.strip() for title in line_list]
+    return strip_lines
+
+def get_filter_markdown_lines(content):
+    '''
+    Get markdown syntax 
+    '''
+    tag_title,tag_subtitle = getattr(settings,'SET_CATALOG_ID',('h4','h5'))
+    md_title_num = '#'*int(tag_title.strip('h'))
+    md_subtitle_num = '#'*int(tag_subtitle.strip('h'))
+    md_lines = get_markdown_lines(content) # md
+    filter_titles = [title for title in md_lines if title.startswith(md_title_num) or title.startswith(md_subtitle_num)]
+    return filter_titles
+
 
 def make_catalog_mark(content):
     content_list = list(content)
@@ -22,9 +42,15 @@ def make_catalog_mark(content):
             break
     return content_list
 def replace_catalog_mark(content):
+    # is markdown add '<textarea>' tag 
     math =get_catalog_math(content)
-    if len(math) == 0 :
+    md_math = get_filter_markdown_lines(content)
+    is_md = True if len(md_math) !=0 else False
+    if is_md:
+        content = '<textarea>{}</textarea>'.format(content)
+    if len(math) == 0 and len(md_math) ==0:
         return None
+    # make mark
     content_list = make_catalog_mark(content)
     try:
         start_name = 0
@@ -50,23 +76,16 @@ def get_article_content(content):
     content = ''.join(get_content_list)
     return content
 
-def get_markdown_lines(content):
-    line_list = content.splitlines()
-    strip_lines = [title.strip() for title in line_list]
-    return strip_lines
-
 def get_math(content):
     tag_title,tag_subtitle = getattr(settings,'SET_CATALOG_ID',('h4','h5'))
     md_title_num = '#'*int(tag_title.strip('h'))
     md_subtitle_num = '#'*int(tag_subtitle.strip('h'))
-    math = get_catalog_math(content)
-    if len(math) == 0 : # 没有匹配到则开始检测MarkDown
-        md_lines = get_markdown_lines(content)
-        print(md_lines)
-        filter_titles = [title for title in md_lines if title.startswith(md_title_num) or title.startswith(md_subtitle_num)]
-        print(filter_titles is None)
-        if len(filter_titles) ==0:
-            return None
+    math = get_catalog_math(content) # html
+    filter_titles = get_filter_markdown_lines(content)
+
+    if len(math) ==0 and len(filter_titles) ==0:
+        return None
+    if len(math) == 0 and len(filter_titles) !=0: # 没有匹配到则开始检测MarkDown
         tag_titles = []
         tag = None
         title_len = len(filter_titles)

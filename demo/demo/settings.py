@@ -123,10 +123,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# 设置过滤目录标签：默认title为h4和subtitle为h5
+# Set html tag default h4 h5
 # SET_CATALOG_ID = ('h2','h3')
 
-# 这是样式，默认无
+# Set attr 
 # SET_CATALOG_ATTR = {
 #     'ul':'class="list-group"',
 #     'li':'class="list-group-item"'
