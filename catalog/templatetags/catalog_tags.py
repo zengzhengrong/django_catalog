@@ -10,7 +10,8 @@ register = template.Library()
 @register.simple_tag
 def render_catalog_html(content):
     math = get_math(content)
-
+    if math is None:
+        return None
     html_attr = getattr(settings,'SET_CATALOG_ATTR',{})
     ul_attr = html_attr.get('ul','')
     li_attr = html_attr.get('li','')

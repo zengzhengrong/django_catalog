@@ -24,7 +24,7 @@ def make_catalog_mark(content):
 def replace_catalog_mark(content):
     math =get_catalog_math(content)
     if len(math) == 0 :
-        content = '<textarea>{}</textarea>'.format(content)
+        return None
     content_list = make_catalog_mark(content)
     try:
         start_name = 0
@@ -62,7 +62,11 @@ def get_math(content):
     math = get_catalog_math(content)
     if len(math) == 0 : # 没有匹配到则开始检测MarkDown
         md_lines = get_markdown_lines(content)
+        print(md_lines)
         filter_titles = [title for title in md_lines if title.startswith(md_title_num) or title.startswith(md_subtitle_num)]
+        print(filter_titles is None)
+        if len(filter_titles) ==0:
+            return None
         tag_titles = []
         tag = None
         title_len = len(filter_titles)
